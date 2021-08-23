@@ -8,17 +8,15 @@ public class UserRequest {
     private String full_name;
     private String username;
     private String password;
-    private String email;
     private String contact_num;
     private String address;
 
 
-    public UserRequest(String full_name, String username, String password, String email, String contact_num, String address) {
+    public UserRequest(String full_name, String username, String password, String contact_num, String address) {
 
         this.full_name = full_name;
         this.username = username;
         this.password = password;
-        this.email = email;
         this.contact_num = contact_num;
         this.address = address;
     }
@@ -49,14 +47,6 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getContact_num() {
