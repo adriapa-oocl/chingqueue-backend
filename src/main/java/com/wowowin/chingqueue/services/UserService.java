@@ -1,9 +1,11 @@
 package com.wowowin.chingqueue.services;
 
+import com.wowowin.chingqueue.exception.UserAlreadyExistsException;
 import com.wowowin.chingqueue.models.entities.User;
 import com.wowowin.chingqueue.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -15,7 +17,14 @@ public class UserService {
     }
 
     public User addUser(User user) {
-        userRepository.save(user);
-        return user;
+
+        List<User> currentUser = userRepository.findByUsername(user.getUsername());
+
+        if (currentUser != null) {
+            throw new UserAlreadyExistsException("Username already exists");
+        }
+
+        return userRepository.save(user);
+
     }
 }
