@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://ec2-44-196-146-152.compute-1.amazonaws.com:5432/deujhat8fdtjeu
-    driverClassName: org.postgresql.Driver
-    username: oxuidtslpjxatw
-    password: 113af11f8d66351139640fb2dde97e4859156e10e796581d664650c4174660cb
+    url: jdbc:h2:file:./h2/db
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
   h2:
