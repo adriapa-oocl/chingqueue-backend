@@ -23,7 +23,7 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(code = HttpStatus.CREATED)
     public UserResponse addUser(@RequestBody UserRequest userRequest) {
         return userMapper.toResponse(userService.addUser(userMapper.toEntity(userRequest)));
