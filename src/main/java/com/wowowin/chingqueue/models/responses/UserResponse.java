@@ -3,6 +3,8 @@ package com.wowowin.chingqueue.models.responses;
 import java.util.Date;
 
 public class UserResponse {
+
+    private Integer user_id;
     private String full_name;
     private String username;
     private String password;
@@ -11,8 +13,8 @@ public class UserResponse {
     private String address;
     private Date create_dt;
 
-    public UserResponse(String full_name, String username, String password, String email, String contact_num, String address, Date create_dt) {
-
+    public UserResponse(Integer user_id, String full_name, String username, String password, String email, String contact_num, String address, Date create_dt) {
+        this.user_id = user_id;
         this.full_name = full_name;
         this.username = username;
         this.password = password;
@@ -80,5 +82,13 @@ public class UserResponse {
 
     public void setCreate_dt(Date create_dt) {
         this.create_dt = create_dt;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 }
