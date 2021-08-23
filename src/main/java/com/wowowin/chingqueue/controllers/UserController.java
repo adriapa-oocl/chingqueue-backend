@@ -9,13 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-
+    @Autowired
     private UserService userService;
 
+    @Autowired
     private UserMapper userMapper;
 
     public UserController(UserService userService, UserMapper userMapper) {
@@ -28,4 +30,11 @@ public class UserController {
     public UserResponse addUser(@RequestBody UserRequest userRequest) {
         return userMapper.toResponse(userService.addUser(userMapper.toEntity(userRequest)));
     }
+
+    @PostMapping("/login")
+    public UserResponse getLogInDetails(@RequestBody UserRequest userRequest) {
+        return userMapper.toResponse(userService.getLogIn(userMapper.toEntity(userRequest)));
+    }
+
+
 }
