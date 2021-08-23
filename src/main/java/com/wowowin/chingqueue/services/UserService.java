@@ -20,7 +20,7 @@ public class UserService {
 
         List<User> currentUser = userRepository.findByUsername(user.getUsername());
 
-        if (currentUser != null) {
+        if (!currentUser.isEmpty()) {
             throw new UserAlreadyExistsException("Username already exists");
         }
 
