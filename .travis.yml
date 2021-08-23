@@ -3,9 +3,9 @@ dist: trusty
 jdk:
 - oraclejdk8
 before_script:
-- "gradlew test"
+- "/gradlew test"
 script:
-- "gradlew build"
+- "/gradlew build"
 deploy:
   provider: heroku
   api_key:
