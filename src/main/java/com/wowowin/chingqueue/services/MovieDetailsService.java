@@ -26,10 +26,10 @@ public class MovieDetailsService {
     }
 
     public MovieDetails updateMovieDetails(Integer movie_Details_Id, MovieDetails movieDetailsInfo) {
-        MovieDetails updateMovieDetails = movieDetailsRepository.findById(movie_Details_Id)
+        return Optional.of(getMovieDetailsById(movie_Details_Id))
                 .map(movieDetails -> updateMovieDetailsInfo(movieDetails, movieDetailsInfo))
-                .get();
-        return movieDetailsRepository.save(updateMovieDetails);
+                .map(this::addMovieDetails)
+                .orElse(null);
     }
 
     private MovieDetails updateMovieDetailsInfo(MovieDetails movieDetails, MovieDetails movieDetailsInfo) {
@@ -45,9 +45,9 @@ public class MovieDetailsService {
     }
 
     public MovieDetails removeMovieDetails(Integer movie_Details_Id) {
-        Optional<MovieDetails> removeMovieDetails = movieDetailsRepository.findById(movie_Details_Id);
+        MovieDetails removeMovieDetails = getMovieDetailsById(movie_Details_Id);
         movieDetailsRepository.deleteById(movie_Details_Id);
-        return removeMovieDetails.orElse(null);
+        return removeMovieDetails;
     }
 
     public MovieDetails getMovieDetailsById(Integer movie_Details_Id){
