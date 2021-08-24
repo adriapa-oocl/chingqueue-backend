@@ -29,6 +29,11 @@ public class MovieDetailsController {
         return movieDetailsService.getAllMovieDetails();
     }
 
+    @GetMapping(path = "/{movie_Details_Id}")
+    public MovieDetails getMovieDetailsById(@PathVariable Integer movie_Details_Id){
+       return movieDetailsService.getMovieDetailsById(movie_Details_Id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MovieDetails addMovieDetails(@RequestBody MovieDetails movieDetails) {

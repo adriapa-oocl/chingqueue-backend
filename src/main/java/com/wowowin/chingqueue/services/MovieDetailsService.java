@@ -49,4 +49,8 @@ public class MovieDetailsService {
         return removeMovieDetails.orElse(null);
     }
 
+    public MovieDetails getMovieDetailsById(Integer movie_Details_Id){
+        return movieDetailsRepository.findById(movie_Details_Id).orElse(null);
+    }
+
 }
