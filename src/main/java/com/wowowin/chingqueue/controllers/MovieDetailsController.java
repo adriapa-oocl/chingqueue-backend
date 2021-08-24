@@ -2,6 +2,8 @@ package com.wowowin.chingqueue.controllers;
 
 import com.wowowin.chingqueue.mapper.MovieDetailsMapper;
 import com.wowowin.chingqueue.models.entities.MovieDetails;
+import com.wowowin.chingqueue.models.requests.MovieDetailsRequest;
+import com.wowowin.chingqueue.models.responses.MovieDetailsResponse;
 import com.wowowin.chingqueue.services.MovieDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,24 +32,24 @@ public class MovieDetailsController {
     }
 
     @GetMapping(path = "/{movie_Details_Id}")
-    public MovieDetails getMovieDetailsById(@PathVariable Integer movie_Details_Id){
-       return movieDetailsService.getMovieDetailsById(movie_Details_Id);
+    public MovieDetails getMovieDetailsById(@PathVariable Integer movie_Details_Id) {
+        return movieDetailsService.getMovieDetailsById(movie_Details_Id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovieDetails addMovieDetails(@RequestBody MovieDetails movieDetails) {
-        return movieDetailsService.addMovieDetails(movieDetails);
+    public MovieDetailsResponse addMovieDetails(@RequestBody MovieDetailsRequest movieDetailsRequest) {
+        return movieDetailsMapper.toResponse(movieDetailsService.addMovieDetails(movieDetailsMapper.toEntity(movieDetailsRequest)));
     }
 
     @PutMapping(path = "/{movie_Details_Id}")
-    public MovieDetails updateMovieDetails(@PathVariable Integer movie_Details_Id, @RequestBody MovieDetails movieDetailsInfo) {
-        return movieDetailsService.updateMovieDetails(movie_Details_Id, movieDetailsInfo);
+    public MovieDetailsResponse updateMovieDetails(@PathVariable Integer movie_Details_Id, @RequestBody MovieDetailsRequest movieDetailsRequest) {
+        return movieDetailsMapper.toResponse(movieDetailsService.updateMovieDetails(movie_Details_Id, movieDetailsMapper.toEntity(movieDetailsRequest)));
     }
 
     @DeleteMapping(path = "/{movie_Details_Id}")
-    public MovieDetails deleteMovieDetails(@PathVariable Integer movie_Details_Id) {
-        return movieDetailsService.removeMovieDetails(movie_Details_Id);
+    public MovieDetailsResponse deleteMovieDetails(@PathVariable Integer movie_Details_Id) {
+        return movieDetailsMapper.toResponse(movieDetailsService.removeMovieDetails(movie_Details_Id));
     }
 
 
