@@ -1,5 +1,6 @@
 package com.wowowin.chingqueue.services;
 
+import com.wowowin.chingqueue.exception.MovieDetailsNotFound;
 import com.wowowin.chingqueue.models.entities.MovieDetails;
 import com.wowowin.chingqueue.repositories.MovieDetailsRepository;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class MovieDetailsService {
     }
 
     public MovieDetails getMovieDetailsById(Integer movie_Details_Id){
-        return movieDetailsRepository.findById(movie_Details_Id).orElse(null);
+        return movieDetailsRepository.findById(movie_Details_Id).orElseThrow(() -> new MovieDetailsNotFound("Movie Details Not Found"));
     }
 
 }
