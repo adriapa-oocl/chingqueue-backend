@@ -17,6 +17,12 @@ public class MovieDetails {
     public MovieDetails() {
     }
 
+    public MovieDetails(Integer movieId, String movieDescription, String movieGenre) {
+        this.movieId = movieId;
+        this.movieDescription = movieDescription;
+        this.movieGenre = movieGenre;
+    }
+
     public Integer getMovieDetailsId() {
         return movieDetailsId;
     }
