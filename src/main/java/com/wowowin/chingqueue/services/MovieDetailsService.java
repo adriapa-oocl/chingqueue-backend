@@ -3,12 +3,15 @@ package com.wowowin.chingqueue.services;
 import com.wowowin.chingqueue.exception.MovieDetailsNotFound;
 import com.wowowin.chingqueue.models.entities.MovieDetails;
 import com.wowowin.chingqueue.repositories.MovieDetailsRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MovieDetailsService {
 
     private final MovieDetailsRepository movieDetailsRepository;
@@ -25,33 +28,39 @@ public class MovieDetailsService {
         return movieDetailsRepository.save(MovieDetails);
     }
 
-    public MovieDetails updateMovieDetails(Integer movie_Details_Id, MovieDetails movieDetailsInfo) {
-        return Optional.of(getMovieDetailsById(movie_Details_Id))
+    public MovieDetails updateMovieDetails(Integer movieDetailsId, MovieDetails movieDetailsInfo) {
+        return Optional.of(getMovieDetailsByMovieId(movieDetailsId))
                 .map(movieDetails -> updateMovieDetailsInfo(movieDetails, movieDetailsInfo))
                 .map(this::addMovieDetails)
                 .orElse(null);
     }
 
     private MovieDetails updateMovieDetailsInfo(MovieDetails movieDetails, MovieDetails movieDetailsInfo) {
-        if (movieDetailsInfo.getMovie_Description() != null) {
-            movieDetails.setMovie_Description(movieDetailsInfo.getMovie_Description());
+        if (movieDetailsInfo.getMovieDescription() != null) {
+            movieDetails.setMovieDescription(movieDetailsInfo.getMovieDescription());
         }
 
-        if (movieDetailsInfo.getMovie_Genre() != null) {
-            movieDetails.setMovie_Genre(movieDetailsInfo.getMovie_Genre());
+        if (movieDetailsInfo.getMovieGenre() != null) {
+            movieDetails.setMovieGenre(movieDetailsInfo.getMovieGenre());
         }
 
         return movieDetails;
     }
 
-    public MovieDetails removeMovieDetails(Integer movie_Details_Id) {
-        MovieDetails removeMovieDetails = getMovieDetailsById(movie_Details_Id);
-        movieDetailsRepository.deleteById(movie_Details_Id);
+    public MovieDetails removeMovieDetails(Integer movieDetailsId) {
+        MovieDetails removeMovieDetails = movieDetailsRepository.findById(movieDetailsId).orElseThrow(() -> new MovieDetailsNotFound("Movie Details does not exists"));
+        movieDetailsRepository.deleteById(movieDetailsId);
         return removeMovieDetails;
     }
 
-    public MovieDetails getMovieDetailsById(Integer movie_Details_Id){
-        return movieDetailsRepository.findById(movie_Details_Id).orElseThrow(() -> new MovieDetailsNotFound("Movie Details Not Found"));
+    public MovieDetails getMovieDetailsByMovieId(Integer movieId){
+        MovieDetails movieDetails = movieDetailsRepository.findByMovieId(movieId);
+
+        if (movieDetails == null) {
+            throw new MovieDetailsNotFound("Movie Details does not exists");
+        }
+
+        return movieDetails;
     }
 
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MovieDetailsRepository extends JpaRepository <MovieDetails, Integer> {
+    MovieDetails findByMovieId(Integer movieId);
 }

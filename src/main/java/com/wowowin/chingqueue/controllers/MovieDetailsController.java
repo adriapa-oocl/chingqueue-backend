@@ -31,9 +31,9 @@ public class MovieDetailsController {
         return movieDetailsService.getAllMovieDetails();
     }
 
-    @GetMapping(path = "/{movie_Details_Id}")
-    public MovieDetails getMovieDetailsById(@PathVariable Integer movie_Details_Id) {
-        return movieDetailsService.getMovieDetailsById(movie_Details_Id);
+    @GetMapping(path = "/{movieId}")
+    public MovieDetails getMovieDetailsByMovieId(@PathVariable Integer movieId) {
+        return movieDetailsService.getMovieDetailsByMovieId(movieId);
     }
 
     @PostMapping
@@ -42,14 +42,14 @@ public class MovieDetailsController {
         return movieDetailsMapper.toResponse(movieDetailsService.addMovieDetails(movieDetailsMapper.toEntity(movieDetailsRequest)));
     }
 
-    @PutMapping(path = "/{movie_Details_Id}")
-    public MovieDetailsResponse updateMovieDetails(@PathVariable Integer movie_Details_Id, @RequestBody MovieDetailsRequest movieDetailsRequest) {
-        return movieDetailsMapper.toResponse(movieDetailsService.updateMovieDetails(movie_Details_Id, movieDetailsMapper.toEntity(movieDetailsRequest)));
+    @PutMapping(path = "/{movieId}")
+    public MovieDetailsResponse updateMovieDetails(@PathVariable Integer movieId, @RequestBody MovieDetailsRequest movieDetailsRequest) {
+        return movieDetailsMapper.toResponse(movieDetailsService.updateMovieDetails(movieId, movieDetailsMapper.toEntity(movieDetailsRequest)));
     }
 
-    @DeleteMapping(path = "/{movie_Details_Id}")
-    public MovieDetailsResponse deleteMovieDetails(@PathVariable Integer movie_Details_Id) {
-        return movieDetailsMapper.toResponse(movieDetailsService.removeMovieDetails(movie_Details_Id));
+    @DeleteMapping(path = "/{movieDetailsId}")
+    public MovieDetailsResponse deleteMovieDetails(@PathVariable Integer movieDetailsId) {
+        return movieDetailsMapper.toResponse(movieDetailsService.removeMovieDetails(movieDetailsId));
     }
 
 
