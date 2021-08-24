@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -51,7 +50,7 @@ public class MovieIntegrationTest {
     }
 
     @Test
-    void should_create_employee_when_create_given_employee_request() throws Exception {
+    void should_create_movie_when_create_given_movie_request() throws Exception {
         // given
         String movieJson = "{\n" +
                 "  \"id\": 22,\n" +
@@ -71,4 +70,38 @@ public class MovieIntegrationTest {
         List<Movie> movies = movieRepository.findAll();
         Assertions.assertEquals(1, movies.size());
     }
+
+    @Test
+    void should_update_movie_when_put_specific_movie_given_put_movie_request_and_details() throws Exception {
+        //given
+        Movie movie = movieRepository.save(new Movie(1, "kmovie", "test"));
+
+        String movieJson = "{\n" +
+                "  \"movie_name\": \"kmovie\",\n" +
+                "  \"movie_img\": \"urlimage\"\n" +
+                "}";
+
+        //when
+        //then
+        mockMvc.perform(put("/movies/" + movie.getMovie_id())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(movieJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.movie_name").value("kmovie"))
+                .andExpect(jsonPath("$.movie_img").value("urlimage"));
+    }
+
+    @Test
+    void should_delete_movie_when_delete_request_given_delete_movie_request() throws Exception {
+        //given
+        Movie movie = movieRepository.save(new Movie(1, "kmovie", "test"));
+
+        //when
+        //then
+        mockMvc.perform(delete("/movies/" + movie.getMovie_id()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].movie_name").doesNotExist())
+                .andExpect(jsonPath("$[0].movie_img").doesNotExist());
+    }
+
 }

@@ -45,9 +45,7 @@ public class MovieService {
         return movie;
     }
 
-    public Movie removeMovie(Integer movie_id) {
-        Optional<Movie> removeMovie = movieRepository.findById(movie_id);
+    public void removeMovie(Integer movie_id) {
         movieRepository.deleteById(movie_id);
-        return removeMovie.orElseThrow(()-> new MovieNotFound("Movie not existing" + movie_id));
     }
 }
