@@ -4,9 +4,11 @@ import com.wowowin.chingqueue.models.entities.Cinema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface CinemaRepository extends JpaRepository <Cinema, Integer> {
+import java.util.List;
 
-    Cinema findByMovieId(Integer movieId);
+@Repository
+public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
+
+    List<Cinema> findAllByMovieId(Integer movieId);
 
 }

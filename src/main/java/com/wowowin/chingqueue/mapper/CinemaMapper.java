@@ -18,7 +18,10 @@ public class CinemaMapper {
     }
 
     public List<CinemaResponse> toResponseList(List<Cinema> cinemas) {
-        return cinemas.stream().map(this::toResponse).collect(Collectors.toList());
+        return cinemas.stream()
+                .map(this::toResponse)
+                .map(CinemaResponse::splitTimeSlot)
+                .collect(Collectors.toList());
     }
 
 }

@@ -57,10 +57,6 @@ public class CinemaResponse {
         this.movieId = movieId;
     }
 
-    public String getCinemaTimeslot() {
-        return cinemaTimeslot;
-    }
-
     public void setCinemaTimeslot(String cinemaTimeslot) {
         this.cinemaTimeslot = cinemaTimeslot;
     }
@@ -73,7 +69,8 @@ public class CinemaResponse {
         this.cinemaTimeslotList = cinemaTimeslotList;
     }
 
-    public void splitTimeSlot() {
+    public CinemaResponse splitTimeSlot() {
         cinemaTimeslotList = new ArrayList<>(Arrays.asList(cinemaTimeslot.split(";")));
+        return this;
     }
 }

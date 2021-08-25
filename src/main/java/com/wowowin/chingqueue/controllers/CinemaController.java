@@ -25,8 +25,8 @@ public class CinemaController {
     }
 
     @GetMapping
-    public List<Cinema> getAllCinemas() {
-        return cinemaService.getAllCinemas();
+    public List<CinemaResponse> getAllCinemas() {
+        return cinemaMapper.toResponseList(cinemaService.getAllCinemas());
     }
 
     @PostMapping
@@ -35,10 +35,8 @@ public class CinemaController {
     }
 
     @GetMapping(path = "/{movie_id}")
-    public CinemaResponse getCinemaByMovieId(@PathVariable Integer movie_id) {
-        CinemaResponse cinemaResponse = cinemaMapper.toResponse(cinemaService.findCinemaByMovieId(movie_id));
-        cinemaResponse.splitTimeSlot();
-        return cinemaResponse;
+    public List<CinemaResponse> getCinemaByMovieId(@PathVariable Integer movie_id) {
+        return cinemaMapper.toResponseList(cinemaService.findCinemaByMovieId(movie_id));
     }
 
 

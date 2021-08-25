@@ -17,16 +17,16 @@ public class CinemaService {
         this.cinemaRepository = cinemaRepository;
     }
 
-    public List<Cinema> getAllCinemas(){
+    public List<Cinema> getAllCinemas() {
         return cinemaRepository.findAll();
     }
 
-    public Cinema addCinema(Cinema cinema){
+    public Cinema addCinema(Cinema cinema) {
         return cinemaRepository.save(cinema);
     }
 
-    public Cinema findCinemaByMovieId(Integer movieId){
-       return cinemaRepository.findByMovieId(movieId);
+    public List<Cinema> findCinemaByMovieId(Integer movieId) {
+        return cinemaRepository.findAllByMovieId(movieId);
     }
 
 }
