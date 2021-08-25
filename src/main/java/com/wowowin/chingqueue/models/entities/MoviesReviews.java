@@ -3,17 +3,15 @@ package com.wowowin.chingqueue.models.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class MoviesReviews {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "movies_reviews_sequence")
+    @SequenceGenerator(name = "movies_reviews_sequence",sequenceName = "movies_reviews_sequence", allocationSize = 1)
     private Integer reviewId;
     private Integer movie_details_id;
     private Integer user_id;
