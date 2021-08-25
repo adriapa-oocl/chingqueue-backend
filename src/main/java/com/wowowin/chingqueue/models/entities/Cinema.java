@@ -19,6 +19,13 @@ public class Cinema {
     public Cinema() {
     }
 
+    public Cinema(String cinemaCompany, String cinemaLocation, Integer movieId, String cinemaTimeslot) {
+        this.cinemaCompany = cinemaCompany;
+        this.cinemaLocation = cinemaLocation;
+        this.movieId = movieId;
+        this.cinemaTimeslot = cinemaTimeslot;
+    }
+
     public Integer getCinemaId() {
         return cinemaId;
     }
