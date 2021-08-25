@@ -1,6 +1,8 @@
 package com.wowowin.chingqueue.controllers;
 
+import com.wowowin.chingqueue.mapper.CinemaMapper;
 import com.wowowin.chingqueue.models.entities.Cinema;
+import com.wowowin.chingqueue.models.responses.CinemaResponse;
 import com.wowowin.chingqueue.services.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,13 @@ import java.util.List;
 public class CinemaController {
 
     @Autowired
+    private final CinemaMapper cinemaMapper;
+
+    @Autowired
     private final CinemaService cinemaService;
 
-    public CinemaController(CinemaService cinemaService) {
+    public CinemaController(CinemaMapper cinemaMapper, CinemaService cinemaService) {
+        this.cinemaMapper = cinemaMapper;
         this.cinemaService = cinemaService;
     }
 
@@ -29,8 +35,10 @@ public class CinemaController {
     }
 
     @GetMapping(path = "/{movie_id}")
-    public Cinema getCinemaByMovieId(@PathVariable Integer movie_id) {
-        return cinemaService.findCinemaByMovieId(movie_id);
+    public CinemaResponse getCinemaByMovieId(@PathVariable Integer movie_id) {
+        CinemaResponse cinemaResponse = cinemaMapper.toResponse(cinemaService.findCinemaByMovieId(movie_id));
+        cinemaResponse.splitTimeSlot();
+        return cinemaResponse;
     }
 
 
