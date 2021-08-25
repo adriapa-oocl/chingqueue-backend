@@ -17,7 +17,7 @@ public class CinemaSeatService {
         this.cinemaSeatRepository = cinemaSeatRepository;
     }
 
-    public List<CinemaSeat> findAllCinemaSeatByCinemaId(Integer cinemaId){
+    public List<CinemaSeat> findAllCinemaSeatByCinemaId(Integer cinemaId) {
         return cinemaSeatRepository.findAllByCinemaId(cinemaId);
     }
 
@@ -25,19 +25,19 @@ public class CinemaSeatService {
         CinemaSeat cinemaSeat = cinemaSeatRepository.findCinemaSeatBySeatIdAndCinemaId(seatId, cinemaSeatInfo.getCinemaId());
         cinemaSeat = updateCinemaSeatInfo(cinemaSeat, cinemaSeatInfo);
 
-        return  cinemaSeatRepository.save(cinemaSeat);
+        return cinemaSeatRepository.save(cinemaSeat);
     }
 
     private CinemaSeat updateCinemaSeatInfo(CinemaSeat cinemaSeat, CinemaSeat cinemaSeatInfo) {
 
-        if(cinemaSeatInfo.getAvailability() != null) {
+        if (cinemaSeatInfo.getAvailability() != null) {
             cinemaSeat.setAvailability(cinemaSeatInfo.getAvailability());
         }
 
         return cinemaSeat;
     }
 
-    public List<CinemaSeat> getAllCinemaSeats(){
+    public List<CinemaSeat> getAllCinemaSeats() {
         return cinemaSeatRepository.findAll();
     }
 
