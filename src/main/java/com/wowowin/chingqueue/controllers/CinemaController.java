@@ -31,7 +31,7 @@ public class CinemaController {
 
     @PostMapping
     public CinemaResponse addCinema(@RequestBody CinemaRequest cinemaRequest) {
-        return cinemaMapper.toResponse(cinemaService.addCinema(cinemaMapper.toEntity(cinemaRequest))).splitTimeSlot();
+        return cinemaMapper.toResponse(cinemaService.addCinema(cinemaMapper.toEntity(cinemaRequest)));
     }
 
     @GetMapping(path = "/{movie_id}")

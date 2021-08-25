@@ -15,13 +15,13 @@ public class CinemaMapper {
     public CinemaResponse toResponse(Cinema cinema) {
         CinemaResponse cinemaResponse = new CinemaResponse();
         BeanUtils.copyProperties(cinema, cinemaResponse);
+        cinemaResponse.splitTimeSlot();
         return cinemaResponse;
     }
 
     public List<CinemaResponse> toResponseList(List<Cinema> cinemas) {
         return cinemas.stream()
                 .map(this::toResponse)
-                .map(CinemaResponse::splitTimeSlot)
                 .collect(Collectors.toList());
     }
 

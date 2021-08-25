@@ -69,8 +69,7 @@ public class CinemaResponse {
         this.cinemaTimeslotList = cinemaTimeslotList;
     }
 
-    public CinemaResponse splitTimeSlot() {
+    public void splitTimeSlot() {
         cinemaTimeslotList = new ArrayList<>(Arrays.asList(cinemaTimeslot.split(";")));
-        return this;
     }
 }
