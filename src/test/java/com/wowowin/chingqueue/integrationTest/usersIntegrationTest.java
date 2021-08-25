@@ -25,17 +25,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class usersIntegrationTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    @Mock
-    private UserRepository userRepository;
-
-   @BeforeEach
-    void tearDown() {
-        userRepository.deleteAll();
-    }
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Autowired
+//    @Mock
+//    private UserRepository userRepository;
+//
+//   @BeforeEach
+//    void tearDown() {
+//        userRepository.deleteAll();
+//    }
 
 
 //    @Test
