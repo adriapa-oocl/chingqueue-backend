@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/users")
@@ -34,6 +36,11 @@ public class UserController {
     @PostMapping("/login")
     public UserResponse getLogInDetails(@RequestBody UserRequest userRequest) {
         return userMapper.toResponse(userService.getLogIn(userMapper.toEntity(userRequest)));
+    }
+
+    @GetMapping
+    public List<UserResponse> getAllUsers() {
+        return userMapper.toResponseList(userService.getAllUsers());
     }
 
 
