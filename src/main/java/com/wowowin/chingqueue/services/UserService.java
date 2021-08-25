@@ -35,4 +35,8 @@ public class UserService {
                     .filter(user1 -> user1.getPassword().equals(user.getPassword()))
                     .findFirst().orElseThrow(()-> new UserNotFound("Username/Password invalid."));
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class UserMapper {
     public User toEntity(UserRequest userRequest) {
@@ -20,5 +23,9 @@ public class UserMapper {
         BeanUtils.copyProperties(user, userResponse);
 
         return userResponse;
+    }
+
+    public List<UserResponse> toResponseList(List<User> users) {
+        return users.stream().map(this::toResponse).collect(Collectors.toList());
     }
 }
