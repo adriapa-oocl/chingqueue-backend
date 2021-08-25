@@ -1,6 +1,7 @@
 package com.wowowin.chingqueue.mapper;
 
 import com.wowowin.chingqueue.models.entities.Cinema;
+import com.wowowin.chingqueue.models.requests.CinemaRequest;
 import com.wowowin.chingqueue.models.responses.CinemaResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,12 @@ public class CinemaMapper {
                 .map(this::toResponse)
                 .map(CinemaResponse::splitTimeSlot)
                 .collect(Collectors.toList());
+    }
+
+    public Cinema toEntity(CinemaRequest cinemaRequest) {
+        Cinema cinema = new Cinema();
+        BeanUtils.copyProperties(cinemaRequest, cinema);
+        return cinema;
     }
 
 }
