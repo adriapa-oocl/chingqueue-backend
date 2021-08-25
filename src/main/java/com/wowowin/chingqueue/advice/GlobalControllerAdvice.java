@@ -1,6 +1,7 @@
 package com.wowowin.chingqueue.advice;
 
 import com.wowowin.chingqueue.exception.MovieNotFound;
+import com.wowowin.chingqueue.exception.MovieDetailsNotFound;
 import com.wowowin.chingqueue.exception.UserNotFound;
 import com.wowowin.chingqueue.exception.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,12 @@ public class GlobalControllerAdvice {
     @ExceptionHandler
     public ErrorResponse MovieNotFoud(MovieNotFound movieNotFound) {
         return new ErrorResponse(movieNotFound.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler
+    public ErrorResponse movieDetailsNotFoundExceptionHandling(MovieDetailsNotFound movieDetailsNotFound) {
+        return new ErrorResponse(movieDetailsNotFound.getMessage());
     }
 
 }
