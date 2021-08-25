@@ -1,15 +1,13 @@
 package com.wowowin.chingqueue.models.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Cinema {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "cinema_sequence")
+    @SequenceGenerator(name = "cinema_sequence", sequenceName = "cinema_sequence", allocationSize = 1)
     private Integer cinemaId;
     private String cinemaCompany;
     private String cinemaLocation;
