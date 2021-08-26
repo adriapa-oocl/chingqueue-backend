@@ -1,5 +1,5 @@
 INSERT INTO MOVIE (movie_name, movie_img)
-VALUES ('Parasite', 'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg');
+VALUES ('Parasite', 'https://images-na.ssl-images-amazon.com/images/I/A1UTpJzoPBL._RI_.jpg');
 
 INSERT INTO MOVIE_DETAILS (movie_id, movie_description, movie_genre)
 VALUES (1, 'Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.', 'Thriller');
